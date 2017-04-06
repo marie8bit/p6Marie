@@ -16,3 +16,6 @@ body {
 #login_form.th, #registration_form.th {
   text-align: right;
 }
+.userProfile-form textarea, .userProfile-form input {
+    width: 100%;
+}

@@ -1,5 +1,7 @@
 {% extends 'lmn/base.html' %}
-
+{% if message %}
+  <P>{{ message }}</p>
+{% endif %}
 {% block content %}
 
   <h2>Log in</h2>
@@ -10,7 +12,6 @@
   </table>
     <button type="submit">Login</button>
   </form>
-
-<P><a href="{% url 'register' %}">Or create an account</a></p>
+  <P><a href="{% url 'register' %}?next={{request.path}}">Or create an account</a></p>
 
 {% endblock %}

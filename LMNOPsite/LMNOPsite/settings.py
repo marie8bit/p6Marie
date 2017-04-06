@@ -23,8 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8c01$#j44g3znb)$q0()8)!%ts-jc)k12!a75-!63qb%bj=d4k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+#TODO
+DEBUG = True
+#DEBUG = TrueS
 ALLOWED_HOSTS = []
 
 
@@ -80,6 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'lmnop',
         'USER' : 'lmnop',
+#TODO
+        #'PASSWORD' : 'lmnop',
         'PASSWORD' : os.environ['POSTGRES_LMNOP_USER_PASSWORD'],
         'HOST' : 'localhost',
         'PORT' : '',
@@ -111,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
@@ -128,5 +131,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Where to send user after successful login if no other page is provided.
 # Should provide the user object.
-LOGIN_REDIRECT_URL = 'lmn:my_user_profile'
+LOGIN_REDIRECT_URL = 'lmn:homepage'
 LOGOUT_REDIRECT_URL = 'lmn:homepage'

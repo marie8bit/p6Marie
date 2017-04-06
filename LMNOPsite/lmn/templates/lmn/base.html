@@ -19,7 +19,12 @@
 
 {% else %}
 
-  <span id='login_or_sign_up'><a href="{% url 'login' %}?next={{ request.path }}">Login or sign up</a></span>
+  {% if request.path != '/accounts/logout/' %}
+    <span id='login_or_sign_up'><a href="{% url 'login' %}?next={{ request.path }}">Login or sign up</a></span>
+  {% else %}
+    <span id='login_or_sign_up'><a href="{% url 'login' %}">Login or sign up</a></span>
+  {% endif %}
+
 
 {% endif %}
 

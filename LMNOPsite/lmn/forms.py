@@ -1,5 +1,6 @@
 from django import forms
-from .models import Note
+from .models import Note, UserProfile
+import datetime
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -20,12 +21,16 @@ class NewNoteForm(forms.ModelForm):
         fields = ('title', 'text')
 
 
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('user','about','joined_date')
+
 class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
-
 
     def clean_username(self):
 
@@ -37,7 +42,12 @@ class UserRegistrationForm(UserCreationForm):
         if User.objects.filter(username__iexact=username).exists():
             raise ValidationError('A user with that username already exists')
 
-        return username
+        return username.lower()
+
+
+    # def clean_about(self):
+    #     about = self.cleaned_data['about']
+    #     return about
 
 
     def clean_first_name(self):
@@ -73,8 +83,15 @@ class UserRegistrationForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
-
         if commit:
             user.save()
-
         return user
+
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['user','about','joined_date']
+
+class StringInput(forms.Form):
+    about = forms.CharField(label='about', max_length=500)

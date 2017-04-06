@@ -40,14 +40,23 @@ def my_user_profile(request, user_pk):
 
         if form.is_valid():
             userPNone = form.save(commit=False)
+            print(form.cleaned_data)
+
             userP.about = userPNone.about
+            print(userP.about)
+            print(userPNone.about)
+
+
             userP.save()
-            return render(request, 'lmn/users/my_user_profile.html', {'form': form, 'user' : user , 'userProfile':userP, 'notes' : usernotes })
+            print(userP)
+            return render(request, 'lmn/users/user_profile.html', {'user' : user , 'userProfile':userP, 'notes' : usernotes })
         else:
             #form = UserProfileEditForm()
             return render("lmn/users/orcamento.html", {"form": form })
+
+    # Get request to edit user profile
     else:
-        form = UserProfileForm()
+        form = UserProfileEditForm(instance=userP)
         return render(request, 'lmn/users/my_user_profile.html', {'form': form, 'user' : user , 'userProfile':userP } )
     # if request.method == "POST":
     #

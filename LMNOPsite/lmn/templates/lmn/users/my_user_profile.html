@@ -8,9 +8,10 @@
     <form method='post' action="">
       {% csrf_token %}
       {{ form.errors }}
+      {{ form }}
       {{ form.non_field_errors }}
-      <label for="about">About: </label>
-      <textarea> {{userProfile.about}}</textarea>
+      <!-- <label for="about">About: </label>
+      <textarea> {{userProfile.about}}</textarea> -->
       <button type="submit"class="save btn btn-default">Save</button>
     </form>
     {{ form.errors }}

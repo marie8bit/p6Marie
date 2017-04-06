@@ -91,7 +91,9 @@ class UserRegistrationForm(UserCreationForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['user','about','joined_date']
+        #fields = ['user','about','joined_date']
+        fields = ( 'about',  )
+
 
 class StringInput(forms.Form):
     about = forms.CharField(label='about', max_length=500)
